@@ -1,0 +1,58 @@
+package fr.adaming.projet.restaurant.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import fr.adaming.projet.restaurant.model.Reservation;
+import fr.adaming.projet.restaurant.service.IReservationService;
+
+@RestController
+@RequestMapping("reservations")
+@CrossOrigin("http://localhost:4200")
+public class ReservationController {
+	
+	@Autowired
+	IReservationService reservationService;
+	
+	@GetMapping
+	public List<Reservation> getAll() {
+		return reservationService.getAllReservation();
+	}
+	
+	@GetMapping("{id}")
+	public Reservation getOne(@PathVariable long id) {
+		return reservationService.getOneReservation(id);
+	}
+	
+	@PostMapping
+	public Reservation createOne(@RequestBody Reservation reservation) {
+		return reservationService.saveReservation(reservation);
+	}
+	
+	@PutMapping("{id}")
+	public Reservation updateOne(@PathVariable long id, @RequestBody Reservation reservation) {
+		Reservation r1 = reservationService.getOneReservation(id);
+		r1.setDateDebut(reservation.getDateDebut());
+		r1.setDateFin(reservation.getDateFin());
+		r1.setNbClients(reservation.getNbClients());
+		r1.setClient(reservation.getClient());
+		r1.setTable(reservation.getTable());
+		return reservationService.saveReservation(r1);
+	}
+	
+	@DeleteMapping("{id}")
+	public Boolean deleteOne(@PathVariable long id) {
+		return reservationService.deleteReservation(id);
+	}
+
+}
