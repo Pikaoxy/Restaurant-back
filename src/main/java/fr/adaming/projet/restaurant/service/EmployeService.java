@@ -1,22 +1,32 @@
 package fr.adaming.projet.restaurant.service;
 
+import java.security.Key;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.adaming.projet.restaurant.model.Employe;
 import fr.adaming.projet.restaurant.repository.IEmployeRepository;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 
 @Service
 public class EmployeService implements IEmployeService {
 	
 	@Autowired
 	IEmployeRepository employeRepository;
+	
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
 	@Override
 	public Employe saveEmploye(Employe employe) {
+		employe.setMdp(bCryptPasswordEncoder.encode(employe.getMdp()));
 		return employeRepository.save(employe);
 	}
 

@@ -62,7 +62,7 @@ public class Plat {
 	}
 	
 	@ManyToOne()
-	@JoinColumn(name="commande")
+	@JoinColumn(name="id_commande")
 	public Commande getCommande() {
 		return commande;
 	}

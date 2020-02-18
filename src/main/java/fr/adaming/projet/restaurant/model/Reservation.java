@@ -69,7 +69,7 @@ public class Reservation {
 	}
 
 	@ManyToOne()
-	@JoinColumn(name="client")
+	@JoinColumn(name="id_client")
 	public Client getClient() {
 		return client;
 	}
@@ -79,7 +79,7 @@ public class Reservation {
 	}
 
 	@ManyToOne()
-	@JoinColumn(name="table")
+	@JoinColumn(name="id_table")
 	public Tables getTable() {
 		return table;
 	}

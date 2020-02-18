@@ -15,6 +15,8 @@ public class Employe {
 	private String nom;
 	private String prenom;
 	private String statut;
+	private String login;
+	private String mdp;
 	
 	public Employe() {
 		
@@ -56,6 +58,24 @@ public class Employe {
 
 	public void setStatut(String statut) {
 		this.statut = statut;
+	}
+	
+	@Column(name="login")
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	@Column(name="mdp")
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
 	}
 
 	@Override

@@ -47,7 +47,7 @@ public class Commande {
 	}
 	
 	@ManyToOne()
-	@JoinColumn(name="table")
+	@JoinColumn(name="id_table")
 	public Tables getTable() {
 		return table;
 	}

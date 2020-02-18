@@ -52,7 +52,7 @@ public class Tables {
 	}
 	
 	@ManyToOne()
-	@JoinColumn(name="employe")
+	@JoinColumn(name="id_employe")
 	public Employe getEmploye() {
 		return employe;
 	}
