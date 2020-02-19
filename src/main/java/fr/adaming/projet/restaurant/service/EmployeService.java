@@ -26,7 +26,6 @@ public class EmployeService implements IEmployeService {
 
 	@Override
 	public Employe saveEmploye(Employe employe) {
-		employe.setMdp(bCryptPasswordEncoder.encode(employe.getMdp()));
 		return employeRepository.save(employe);
 	}
 
