@@ -1,5 +1,7 @@
 package fr.adaming.projet.restaurant.controller;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +54,17 @@ public class TablesController {
 	public Boolean deleteOne(@PathVariable long id) {
 		return tableService.deleteTable(id);
 	}
+	
+	@GetMapping("/nbplaces")
+	public List<Integer> getNbPlaces() {
+		List<Integer> listenb = new ArrayList<Integer>();
+		List<Tables> listetables = tableService.getAllTables();
+		for (int i=0;i<listetables.size();i++) {
+			listenb.add(listetables.get(i).getNbPlaces());
+		}
+		listenb.sort(Comparator.naturalOrder());
+		return listenb;
+	}
+	
 
 }

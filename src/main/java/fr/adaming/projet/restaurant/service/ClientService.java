@@ -44,4 +44,9 @@ public class ClientService implements IClientService {
 		return true;
 	}
 
+	@Override
+	public Client getClientByTel(String tel) {
+		return clientRepository.findByTel(tel);
+	}
+
 }

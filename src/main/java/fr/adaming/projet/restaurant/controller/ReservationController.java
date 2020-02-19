@@ -1,5 +1,6 @@
 package fr.adaming.projet.restaurant.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.adaming.projet.restaurant.model.Reservation;
+import fr.adaming.projet.restaurant.model.Tables;
 import fr.adaming.projet.restaurant.service.IReservationService;
+import fr.adaming.projet.restaurant.service.ITablesService;
 
 @RestController
 @RequestMapping("reservations")
@@ -23,6 +26,9 @@ public class ReservationController {
 	
 	@Autowired
 	IReservationService reservationService;
+	
+	@Autowired
+	ITablesService tableService;
 	
 	@GetMapping
 	public List<Reservation> getAll() {
@@ -53,6 +59,25 @@ public class ReservationController {
 	@DeleteMapping("{id}")
 	public Boolean deleteOne(@PathVariable long id) {
 		return reservationService.deleteReservation(id);
+	}
+	
+	@PostMapping("/date")
+	public List<Reservation> getByDateDebut(@RequestBody Date dateDebut) {
+		return reservationService.getReservationByDateDebut(dateDebut);
+	}
+	
+	@GetMapping("/tables-dispo")
+	public List<Tables> getTablesDispo() {
+		List<Reservation> listeresa = reservationService.getAllReservation();
+		List<Tables> listetables = tableService.getAllTables();
+		for (int i=0;i<listeresa.size();i++) {
+			for (int j=0;j<listetables.size();j++) {
+				if (listeresa.get(i).getTable().getIdTable()==listetables.get(j).getIdTable()) {
+					listetables.remove(listetables.get(i));
+				}
+			}
+		}
+		return listetables;
 	}
 
 }

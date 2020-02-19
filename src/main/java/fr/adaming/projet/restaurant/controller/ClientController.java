@@ -52,5 +52,10 @@ public class ClientController {
 	public Boolean deleteOne(@PathVariable long id) {
 		return clientService.deleteClient(id);
 	}
+	
+	@PostMapping("/tel")
+	public Client getByTel(@RequestBody String tel) {
+		return clientService.getClientByTel(tel);
+	}
 
 }

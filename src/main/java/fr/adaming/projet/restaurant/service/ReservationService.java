@@ -1,5 +1,6 @@
 package fr.adaming.projet.restaurant.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +43,11 @@ public class ReservationService implements IReservationService {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public List<Reservation> getReservationByDateDebut(Date dateDebut) {
+		return reservationRepository.findByDateDebut(dateDebut);
 	}
 
 }

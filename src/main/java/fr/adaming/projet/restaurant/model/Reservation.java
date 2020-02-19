@@ -40,7 +40,7 @@ public class Reservation {
 	}
 
 	@Column(name="date_debut")
-	@JsonFormat(pattern="yyyy-MM-dd HH-mm")
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm")
 	public Date getDateDebut() {
 		return dateDebut;
 	}
@@ -50,7 +50,7 @@ public class Reservation {
 	}
 
 	@Column(name="date_fin")
-	@JsonFormat(pattern="yyyy-MM-dd HH-mm")
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm")
 	public Date getDateFin() {
 		return dateFin;
 	}

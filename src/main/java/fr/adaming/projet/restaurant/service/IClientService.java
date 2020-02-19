@@ -10,5 +10,7 @@ public interface IClientService {
 	public List<Client> getAllClient();
 	public Client getOneClient(long id);
 	public Boolean deleteClient(long id);
+	
+	public Client getClientByTel(String tel);
 
 }
