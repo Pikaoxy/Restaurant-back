@@ -1,5 +1,6 @@
 package fr.adaming.projet.restaurant.controller;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -66,18 +67,20 @@ public class ReservationController {
 		return reservationService.getReservationByDateDebut(dateDebut);
 	}
 	
-	@GetMapping("/tables-dispo")
-	public List<Tables> getTablesDispo() {
-		List<Reservation> listeresa = reservationService.getAllReservation();
+	@PostMapping("/date/tables-dispo")
+	public List<Tables> getTablesDispoByDate(@RequestBody Date dateDebut) {
+		List<Reservation> listeresa = reservationService.getReservationByDateDebut(dateDebut);
 		List<Tables> listetables = tableService.getAllTables();
 		for (int i=0;i<listeresa.size();i++) {
 			for (int j=0;j<listetables.size();j++) {
 				if (listeresa.get(i).getTable().getIdTable()==listetables.get(j).getIdTable()) {
-					listetables.remove(listetables.get(i));
+					listetables.remove(listetables.get(j));
 				}
 			}
 		}
+		Collections.sort(listetables);
 		return listetables;
 	}
+
 
 }

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="tb_tables")
-public class Tables {
+public class Tables implements Comparable<Tables> {
 	
 	private long idTable;
 	private long numero;
@@ -64,6 +64,12 @@ public class Tables {
 	@Override
 	public String toString() {
 		return "Tables [idTable=" + idTable + ", numero=" + numero + ", nbPlaces=" + nbPlaces + "]";
+	}
+
+	@Override
+	public int compareTo(Tables t1) {
+		int comparenb=((Tables)t1).getNbPlaces();
+		return this.nbPlaces-comparenb;
 	}
 	
 	
