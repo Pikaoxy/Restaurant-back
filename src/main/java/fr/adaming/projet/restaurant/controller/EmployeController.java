@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.adaming.projet.restaurant.model.Employe;
+import fr.adaming.projet.restaurant.model.Token;
 import fr.adaming.projet.restaurant.service.IEmployeService;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -63,6 +64,11 @@ public class EmployeController {
 	@DeleteMapping("{id}")
 	public Boolean deleteOne(@PathVariable long id) {
 		return employeService.deleteEmploye(id);
+	}
+	
+	@PostMapping("/connexion/token")
+	public Token getTokenByLogin(@RequestBody Employe employe) {
+		return employeService.getTokenByLogin(employe);
 	}
 
 }

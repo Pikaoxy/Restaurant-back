@@ -1,7 +1,9 @@
 package fr.adaming.projet.restaurant.service;
 
 import java.security.Key;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.adaming.projet.restaurant.model.Employe;
+import fr.adaming.projet.restaurant.model.Token;
 import fr.adaming.projet.restaurant.repository.IEmployeRepository;
+import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
@@ -52,6 +56,27 @@ public class EmployeService implements IEmployeService {
 		}
 		return true;
 	}
+	
+	@Override
+	public Token getTokenByLogin(Employe employe) {
+		Employe emp = employeRepository.findByLogin(employe.getLogin());
+		if (emp==null)
+			return null;
+		if (bCryptPasswordEncoder.matches(employe.getMdp(), emp.getMdp())) {
+			Map<String, Object> claims = new HashMap<String, Object>();
+			claims.put("idEmploye", emp.getIdEmploye());
+			claims.put("login", emp.getLogin());
+			claims.put("nom", emp.getNom());
+			claims.put("prenom", emp.getPrenom());
+			claims.put("statut", emp.getStatut());
+			String jws = Jwts.builder().addClaims(claims).signWith(key).compact();
+			Token t = new Token();
+			t.setToken(jws);
+			return t;
+		}
+		return null;
+	}
+
 	
 	
 
