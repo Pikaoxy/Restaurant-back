@@ -37,7 +37,7 @@ public class Commande {
 	}
 
 	@Column(name="date")
-	@JsonFormat(pattern="yyyy-MM-dd HH-mm")
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm")
 	public Date getDate() {
 		return date;
 	}

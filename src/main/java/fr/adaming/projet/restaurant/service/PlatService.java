@@ -44,4 +44,9 @@ public class PlatService implements IPlatService {
 		return true;
 	}
 
+	@Override
+	public List<Plat> getPlatByCategorie(String categorie) {
+		return platRepository.findByCategorie(categorie);
+	}
+
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.adaming.projet.restaurant.model.Commande;
+import fr.adaming.projet.restaurant.model.CommandeResa;
 import fr.adaming.projet.restaurant.service.ICommandeService;
 
 @RestController
@@ -50,6 +51,11 @@ public class CommandeController {
 	@DeleteMapping("{id}")
 	public Boolean deleteOne(@PathVariable long id) {
 		return commandeService.deleteCommande(id);
+	}
+	
+	@PostMapping("/resa")
+	public Commande getByTableAndDate(@RequestBody CommandeResa commanderesa) {
+		return commandeService.getOneByTableAndDate(commanderesa.getTable(), commanderesa.getDate());
 	}
 
 }

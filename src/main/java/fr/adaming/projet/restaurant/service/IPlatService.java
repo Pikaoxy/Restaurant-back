@@ -10,5 +10,7 @@ public interface IPlatService {
 	public List<Plat> getAllPlat();
 	public Plat getOnePlat(long id);
 	public Boolean deletePlat(long id);
+	
+	public List<Plat> getPlatByCategorie(String categorie);
 
 }

@@ -45,13 +45,17 @@ public class PlatController {
 		p1.setNom(plat.getNom());
 		p1.setPrix(p1.getPrix());
 		p1.setStock(plat.getStock());
-		p1.setCommande(plat.getCommande());
 		return platService.savePlat(p1);
 	}
 	
 	@DeleteMapping("{id}")
 	public Boolean deleteOne(@PathVariable long id) {
 		return platService.deletePlat(id);
+	}
+	
+	@PostMapping("/categorie")
+	public List<Plat> getByCategorie(@RequestBody String categorie) {
+		return platService.getPlatByCategorie(categorie);
 	}
 
 }
