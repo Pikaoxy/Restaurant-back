@@ -43,7 +43,7 @@ public class PlatController {
 	public Plat updateOne(@PathVariable long id, @RequestBody Plat plat) {
 		Plat p1 = platService.getOnePlat(id);
 		p1.setNom(plat.getNom());
-		p1.setPrix(p1.getPrix());
+		p1.setPrix(plat.getPrix());
 		p1.setStock(plat.getStock());
 		return platService.savePlat(p1);
 	}
