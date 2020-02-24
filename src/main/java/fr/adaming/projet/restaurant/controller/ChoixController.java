@@ -40,7 +40,7 @@ public class ChoixController {
 		return choixService.saveChoix(choix);
 	}
 	
-	@PutMapping("{id]")
+	@PutMapping("{id}")
 	public Choix updateOne(@PathVariable long id, @RequestBody Choix choix) {
 		Choix c1 = choixService.getOneChoix(id);
 		c1.setCommande(choix.getCommande());
@@ -57,6 +57,11 @@ public class ChoixController {
 	@PostMapping("/commande")
 	public List<Choix> getByCommande(@RequestBody Commande commande) {
 		return choixService.getChoixByCommande(commande);
+	}
+	
+	@GetMapping("/commande/{id}")
+	public List<Choix> getByIdCommande(@PathVariable long id) {
+		return choixService.getChoixByIdCommande(id);
 	}
 
 }

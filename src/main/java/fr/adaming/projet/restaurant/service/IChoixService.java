@@ -19,6 +19,7 @@ public interface IChoixService {
 	public Boolean deleteChoix(long id);
 	
 	public List<Choix> getChoixByCommande(Commande commande);
+	public List<Choix> getChoixByIdCommande(long id);
 	
 	
 

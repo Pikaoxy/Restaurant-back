@@ -51,4 +51,11 @@ public class ChoixService implements IChoixService {
 		return choixRepository.findByCommande(commande);
 	}
 
+	@Override
+	public List<Choix> getChoixByIdCommande(long id) {
+		return choixRepository.findByIdCommande(id);
+	}
+	
+	
+
 }
