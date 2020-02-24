@@ -2,6 +2,7 @@ package fr.adaming.projet.restaurant.service;
 
 import java.util.List;
 
+import fr.adaming.projet.restaurant.model.Commande;
 import fr.adaming.projet.restaurant.model.Facture;
 
 public interface IFactureService {
@@ -10,5 +11,7 @@ public interface IFactureService {
 	public List<Facture> getAllFacture();
 	public Facture getOneFacture(long id);
 	public Boolean deleteFacture(long id);
+	
+	public Facture getOneByCommande(Commande commande);
 
 }

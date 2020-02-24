@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.adaming.projet.restaurant.model.Choix;
 import fr.adaming.projet.restaurant.model.Commande;
 import fr.adaming.projet.restaurant.model.CommandeResa;
+import fr.adaming.projet.restaurant.model.MontantFacture;
+import fr.adaming.projet.restaurant.service.IChoixService;
 import fr.adaming.projet.restaurant.service.ICommandeService;
 
 @RestController
@@ -24,6 +27,9 @@ public class CommandeController {
 	
 	@Autowired
 	ICommandeService commandeService;
+	
+	@Autowired
+	IChoixService choixService;
 	
 	@GetMapping
 	public List<Commande> getAll() {
@@ -56,6 +62,18 @@ public class CommandeController {
 	@PostMapping("/resa")
 	public Commande getByTableAndDate(@RequestBody CommandeResa commanderesa) {
 		return commandeService.getOneByTableAndDate(commanderesa.getTable(), commanderesa.getDate());
+	}
+	
+	@GetMapping("/montant/{id}")
+	public MontantFacture getMontantByCommande(@PathVariable long id) {
+		List<Choix> listeChoix = choixService.getChoixByIdCommande(id);
+		MontantFacture montant = new MontantFacture();
+		float total=0;
+		for (int i=0;i<listeChoix.size();i++) {
+			total=total+listeChoix.get(i).getMontantChoix();
+		}
+		montant.setMontantFacture(total);
+		return montant;
 	}
 
 }

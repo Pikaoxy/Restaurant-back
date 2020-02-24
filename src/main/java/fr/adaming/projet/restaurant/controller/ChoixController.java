@@ -46,6 +46,7 @@ public class ChoixController {
 		c1.setCommande(choix.getCommande());
 		c1.setPlat(choix.getPlat());
 		c1.setNbPlat(choix.getNbPlat());
+		c1.setMontantChoix(choix.getMontantChoix());
 		return choixService.saveChoix(c1);
 	}
 	

@@ -17,6 +17,7 @@ public class Choix {
 	private Plat plat;
 	private Commande commande;
 	private int nbPlat;
+	private float montantChoix;
 	
 	public Choix() {
 		
@@ -61,11 +62,22 @@ public class Choix {
 	public void setNbPlat(int nbPlat) {
 		this.nbPlat = nbPlat;
 	}
+	
+	@Column(name="montant_choix")
+	public float getMontantChoix() {
+		return montantChoix;
+	}
+
+	public void setMontantChoix(float montantChoix) {
+		this.montantChoix = montantChoix;
+	}
 
 	@Override
 	public String toString() {
-		return "Choix [idChoix=" + idChoix + ", plat=" + plat + ", commande=" + commande + ", nbPlat=" + nbPlat + "]";
+		return "Choix [idChoix=" + idChoix + ", plat=" + plat + ", commande=" + commande + ", nbPlat=" + nbPlat
+				+ ", montantChoix=" + montantChoix + "]";
 	}
+	
 	
 	
 }

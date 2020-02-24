@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.adaming.projet.restaurant.model.Commande;
 import fr.adaming.projet.restaurant.model.Facture;
 import fr.adaming.projet.restaurant.service.IFactureService;
 
@@ -50,6 +51,11 @@ public class FactureController {
 	@DeleteMapping("{id}")
 	public Boolean deleteOne(@PathVariable long id) {
 		return factureService.deleteFacture(id);
+	}
+	
+	@PostMapping("/commande")
+	public Facture getByCommande(@RequestBody Commande commande) {
+		return factureService.getOneByCommande(commande);
 	}
 
 }

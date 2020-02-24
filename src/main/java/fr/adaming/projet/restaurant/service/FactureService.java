@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.adaming.projet.restaurant.model.Commande;
 import fr.adaming.projet.restaurant.model.Facture;
 import fr.adaming.projet.restaurant.repository.IFactureRepository;
 
@@ -43,6 +44,11 @@ public class FactureService implements IFactureService {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public Facture getOneByCommande(Commande commande) {
+		return factureRepository.findByCommande(commande);
 	}
 
 }
